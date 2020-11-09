@@ -1,5 +1,7 @@
 # spellwell
 
+A vue web app to help kids learn spelling.
+
 ## Project setup
 ```
 yarn install
