@@ -52,8 +52,6 @@
 
 <script>
 import { mapState } from 'vuex'
-const synth = window.speechSynthesis
-const voices = synth.getVoices()
 
 export default {
   name: 'Practice',
@@ -62,7 +60,9 @@ export default {
       index: 0,
       enteredWord: [],
       wordStatus: [],
-      showWord: false
+      showWord: false,
+      synth: null,
+      voice: null
     }
   },
 
@@ -75,16 +75,14 @@ export default {
   methods: {
     sayWord () {
       const utterThis = new SpeechSynthesisUtterance('Spell, ' + this.words[this.index])
-      utterThis.voice = voices[0] // hardcode to 'Daniel' en-GB
-      utterThis.rate = 0.8
-      synth.speak(utterThis)
+      utterThis.voice = this.voices
+      this.synth.speak(utterThis)
     },
 
     sayLetter (letter) {
       const utterThis = new SpeechSynthesisUtterance(letter)
-      utterThis.voice = voices[0] // hardcode to 'Daniel' en-GB
-      utterThis.rate = 0.8
-      synth.speak(utterThis)
+      utterThis.voice = this.voice // hardcode to 'Daniel' en-GB
+      this.synth.speak(utterThis)
     },
 
     clearWord () {
@@ -92,7 +90,7 @@ export default {
       this.wordStatus = []
     },
     checkWord () {
-      for (let i = 0; i < this.words[this.index].length; i++) {
+      for (let i = 0; i < this.enteredWord.length; i++) {
         const letter = this.words[this.index][i]
         if (letter === this.enteredWord[i]) {
           this.wordStatus[i] = 'text-success'
@@ -135,6 +133,9 @@ export default {
   },
 
   created () {
+    this.synth = window.speechSynthesis
+    const voices = this.synth.getVoices()
+    this.voice = voices[0]
     window.addEventListener('keyup', this.keyPress)
   },
   beforeDestroy () {

@@ -23,7 +23,7 @@ export default {
     }
   },
   methods: {
-    addWord (event) {
+    addWord () {
       this.$store.dispatch('addWord', this.word)
         .then(() => {
           this.word = ''
