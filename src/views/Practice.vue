@@ -18,7 +18,6 @@
     <template  v-if="words.length">
       <div class="row">
         <div class="col-12 col-md-5 mx-auto">
-          <b-btn variant="primary" size="xl" class="ml-auto mr-2" @click="sayWord">💬 <span class="ml-3">Say the word</span></b-btn>
           <!--
           <b-btn variant="primary" size="xl" class="ml-2 mr-auto" @mousedown="showWord = true" @mouseup="showWord = false">👀 <span class="ml-3">Show the word</span></b-btn>
           <p v-if="showWord" class="text-entry">{{ words[index] }}</p>
@@ -38,7 +37,8 @@
       </div>
 
       <div class="row" v-if="words.length">
-        <div class="col-12 col-md-6 mx-auto p-3">
+        <div class="col-12 col-md-10 mx-auto p-3">
+          <b-btn variant="primary" size="xl" class="ml-auto mr-2" @click="sayWord">💬 <span class="ml-3">Say the word</span></b-btn>
           <b-btn variant="outline-primary" size="xl" @click="checkWord" class="ml-auto mr-2">✅ <span class="ml-3">Check my spelling</span></b-btn>
           <b-btn variant="outline-primary" size="xl" @click="clearWord" class="mx-2">✏️ <span class="ml-3">Try again</span></b-btn>
           <b-btn variant="outline-primary" size="xl" @click="nextWord" class="ml-2 mr-auto">➡️ <span class="ml-3">Next word</span></b-btn>
