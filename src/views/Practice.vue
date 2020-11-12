@@ -62,7 +62,8 @@ export default {
       wordStatus: [],
       showWord: false,
       synth: null,
-      voice: null
+      voice: null,
+      alphabet: {}
     }
   },
 
@@ -80,9 +81,8 @@ export default {
     },
 
     sayLetter (letter) {
-      const utterThis = new SpeechSynthesisUtterance(letter)
-      utterThis.voice = this.voice // hardcode to 'Daniel' en-GB
-      this.synth.speak(utterThis)
+      this.alphabet[letter].currentTime = 0
+      this.alphabet[letter].play()
     },
 
     clearWord () {
@@ -90,13 +90,19 @@ export default {
       this.wordStatus = []
     },
     checkWord () {
+      let correct = 0
+      const word = this.words[this.index]
       for (let i = 0; i < this.enteredWord.length; i++) {
-        const letter = this.words[this.index][i]
+        const letter = word[i]
         if (letter === this.enteredWord[i]) {
+          correct++
           this.wordStatus[i] = 'text-success'
         } else {
           this.wordStatus[i] = 'text-danger'
         }
+      }
+      if (correct === word.length) {
+        this.$store.dispatch('addToScore', 10)
       }
       this.$forceUpdate()
     },
@@ -136,6 +142,12 @@ export default {
     this.synth = window.speechSynthesis
     const voices = this.synth.getVoices()
     this.voice = voices[0]
+    const vm = this
+    const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+    alphabet.forEach(letter => {
+      vm.alphabet[letter] = new Audio('./assets/alphabet/' + letter + '.mp3')
+    })
+
     window.addEventListener('keyup', this.keyPress)
   },
   beforeDestroy () {

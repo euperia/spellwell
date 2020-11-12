@@ -1,15 +1,12 @@
 <template>
   <form v-on:submit.prevent="addWord">
-
-    <div class="form-group row">
-      <label for="word" class="col-1 col-form-label col-form-label">Word:</label>
-      <div class="col-8">
-        <input v-model="word" type="text" class="form-control form-control" id="word" placeholder="Enter a word">
+    <div class="row my-3">
+      <div class="col-1"><label for="word">Word:</label></div>
+      <div class="col-7">
+        <input v-model="word" type="text" class="form-control" id="word" placeholder="Enter a word">
       </div>
-      <div class="col-3">
-        <b-btn variant="primary" type="submit">Add</b-btn>
+      <div class="col-3"><b-btn variant="primary" type="submit">Add</b-btn></div>
       </div>
-    </div>
   </form>
 </template>
 

@@ -2,8 +2,8 @@
   <div class="container">
     <div class="row">
       <div class="col-12 col-md-6 mx-md-auto">
-        <h1>Enter your spellings</h1>
-        <p>Enter up to 20 spellings for us to test you on.</p>
+        <h1>Enter your words</h1>
+        <p>Enter up to 20 words for us to test your spelling.</p>
       </div>
     </div>
 

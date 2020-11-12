@@ -11,7 +11,13 @@
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
             <b-nav-item to="/">Home</b-nav-item>
+            <b-nav-item to="/spellings">Words</b-nav-item>
+            <b-nav-item v-if="words.length" to="/practice">Practice</b-nav-item>
+            <b-nav-item v-if="words.length" to="/test">Test</b-nav-item>
             <b-nav-item to="/about">About</b-nav-item>
+          </b-navbar-nav>
+          <b-navbar-nav class="ml-auto">
+            <p class="text-white">{{ name }} | Score: {{ score }}</p>
           </b-navbar-nav>
         </b-collapse>
       </b-navbar>
@@ -22,6 +28,21 @@
   </div>
 </template>
 
+<script>
+
+import { mapGetters } from 'vuex'
+export default {
+  name: 'App',
+  computed: {
+    ...mapGetters({
+      words: 'words',
+      name: 'name',
+      score: 'score'
+    })
+  }
+}
+</script>
+
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap');
 body {
@@ -30,6 +51,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   margin: 0;
   padding: 0;
+  font-size: 1.2rem;
 }
-
 </style>

@@ -13,10 +13,13 @@ export default new Vuex.Store({
   plugins: [vuexPersist.plugin],
   state: {
     name: '',
-    words: []
+    words: [],
+    score: 0
   },
   getters: {
-    name: state => state.name
+    name: state => state.name,
+    words: state => state.words,
+    score: state => state.score
   },
   mutations: {
     updateName (state, payload) {
@@ -37,6 +40,12 @@ export default new Vuex.Store({
     },
     clearWords (state) {
       state.words = []
+    },
+    addToScore (state, payload) {
+      state.score += payload
+    },
+    resetScore (state) {
+      state.score = 0
     }
   },
   actions: {
@@ -45,6 +54,12 @@ export default new Vuex.Store({
     },
     removeWord ({ commit }, payload) {
       commit('removeWord', payload)
+    },
+    addToScore ({ commit }, payload) {
+      commit('addToScore', payload)
+    },
+    resetScore ({ commit }) {
+      commit('resetScore')
     }
   },
   modules: {

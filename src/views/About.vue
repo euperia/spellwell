@@ -8,6 +8,9 @@
           and needs interaction to learn.
         </p>
         <p>I created SpellWell with the hope that it would help him learn in a fun way.</p>
+        <hr>
+        <h2>Attributions</h2>
+        <p>Alphabet sounds taken from <a href="https://commons.m.wikimedia.org/wiki/File:Alphabet.oga" title="Alphabet Creative Commons">https://commons.m.wikimedia.org/wiki/File:Alphabet.oga</a> and is licensed under Creative Commons (CC) BY-ND 2.0.</p>
       </div>
     </div>
   </div>
